@@ -1,3 +1,118 @@
-h1 {
-  font-family: "altehaas";
+/* ===== FONTS ===== */
+/* altehaas */
+/* manrope */
+/* funnel */
+
+body {
+  background: #ecede2;
+}
+
+.page-title {
+  font-family: "funnel";
+  font-weight: bold;
+  font-size: 2.5rem;
+
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  height: 100vh;
+}
+
+.container > * {
+  flex: 1;
+}
+
+.top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+}
+
+.middle {
+  flex: 4;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+}
+
+.middle > .bookcase {
+  border-radius: 12px;
+  border: 4px solid #775f54;
+
+  background: #b4a8a3;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+
+  overflow-y: scroll;
+
+  width: 65%;
+  height: 100%;
+
+  box-shadow: 3px 9px 20px 7px rgba(119, 95, 84, 60%);
+}
+
+.bookcase-row {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: 1fr;
+
+  column-gap: 4px;
+
+  border-bottom: 8px solid #775f54;
+}
+
+.bookcase-row:last-child {
+  border: 0;
+}
+
+.book {
+  width: 100%;
+  height: 100%;
+  background: hotpink;
+}
+
+.bookcase::-webkit-scrollbar {
+  display: none;
+}
+
+.bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+}
+
+.bottom > button {
+  font-family: funnel, sans-serif;
+  border-radius: 12px;
+
+  background: #b4a8a3;
+  border: 0;
+
+  font-weight: 600;
+  font-size: 1.5rem;
+  padding: 0.5em 1.5em;
+}
+
+.bottom:hover > button {
+  transition: 0.25s;
+}
+
+.bottom > button:hover {
+  background-color: #775f54;
+  color: white;
 }
