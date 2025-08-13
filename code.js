@@ -1,4 +1,5 @@
 const addBtn = document.querySelector('.addBtn');
+const bookDeets = document.querySelector('.book-deets');
 
 // ====== FORM ITEMS ======
 const form = document.querySelector('form');
@@ -17,6 +18,7 @@ closeBtn.addEventListener('click', (event) => {
 });
 
 const myLibrary = [];
+const bookDivs = [];
 
 function Book(data) {
   this.name = data.bookName;
@@ -25,6 +27,7 @@ function Book(data) {
   if (read === 'on') {
     this.read = true;
   } else this.read = false;
+  this.id = data.id;
 }
 
 function addBookToLibrary(event) {
@@ -40,6 +43,7 @@ function addBookToLibrary(event) {
   for (item of data) {
     dummyBook[item[0]] = item[1];
   }
+  dummyBook.id = crypto.randomUUID();
 
   let book = new Book(dummyBook);
   myLibrary.push(book);
@@ -49,18 +53,44 @@ function addBookToLibrary(event) {
   modal.classList.remove('open');
 }
 
+let lastStop = 0;
 // when submitted, update rows
 function updateRows() {
   const rows = document.querySelectorAll('.bookcase-row');
-  let index = 0;
-  for (item of myLibrary) {
-    let rowindex = Math.floor(index / 10);
+  let i = 0;
+  for (i = lastStop; i < myLibrary.length; i++) {
+    let rowindex = Math.floor(i / 10);
 
     let book = document.createElement('div');
+    let title = document.createElement('div');
+    let author = document.createElement('div');
 
+    let titleH = document.createElement('p');
+    let authorP = document.createElement('p');
+
+    title.appendChild(titleH);
+    author.appendChild(authorP);
+
+    titleH.textContent = myLibrary[i].name;
+    title.classList.add('title');
+    authorP.textContent = myLibrary[i].author;
+    author.classList.add('author');
+
+    book.appendChild(title);
+    book.appendChild(author);
+
+    book.setAttribute('data-index', `${i}`);
+    book.setAttribute('data-row', `${rowindex}`);
     book.classList.add('book');
+
     rows[rowindex].appendChild(book);
 
-    index++;
+    book.addEventListener('mouseup', (event) => {
+      myLibrary = myLibrary.splice(i, 1);
+      rows[rowindex].removeChild(book);
+
+      console.log(myLibrary);
+    });
   }
+  lastStop = i;
 }
