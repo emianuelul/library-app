@@ -46,14 +46,18 @@ body {
 }
 
 .middle > .bookcase {
+  position: relative;
+
   border-radius: 12px;
   border: 4px solid #775f54;
 
   background: #b4a8a3;
 
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(3, 1fr);
+
+  gap: 16px;
 
   width: 65%;
   height: 100%;
@@ -63,18 +67,15 @@ body {
   box-shadow: 3px 9px 20px 7px rgba(119, 95, 84, 60%);
 }
 
-.bookcase-row {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: 1fr;
-
-  column-gap: 1rem;
-
-  border-bottom: 8px solid #775f54;
-}
-
-.bookcase-row:last-child {
-  border: 0;
+.bookcase::before {
+  content: '';
+  position: absolute;
+  top: 204px;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: #775f54;
+  box-shadow: 0 204px 0 #775f54, 0 410px 0 #775f54;
 }
 
 .book {
@@ -124,6 +125,16 @@ body {
 
 .book > .author > * {
   font-size: clamp(1rem, 7.5vmin, 1.25rem);
+}
+
+.book.read {
+  background-color: rgb(128, 177, 93);
+}
+
+.book:hover,
+.book.read:hover {
+  border: 3px solid rgb(172, 18, 18, 0.5);
+  box-shadow: inset 0px 0px 20px 2px rgb(155, 29, 29, 0.5);
 }
 
 .bottom {
@@ -302,4 +313,15 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.footer {
+  position: absolute;
+
+  text-align: center;
+  background-color: white;
+
+  width: 100%;
+
+  bottom: 0;
 }
