@@ -131,6 +131,8 @@ function deleteBook(index) {
 
     i++;
   }
+
+  bookDetailsModal.classList.remove('open');
 }
 
 function updateBooks(index) {
