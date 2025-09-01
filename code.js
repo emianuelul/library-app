@@ -35,13 +35,15 @@ closeBtn.addEventListener('click', (event) => {
 
 let myLibrary = [];
 
-function Book(data) {
-  this.name = data.bookName;
-  this.author = data.bookAuthor;
-  this.pages = data.pages;
-  if (data.read === 'on') {
-    this.read = true;
-  } else this.read = false;
+class Book {
+  constructor(data) {
+    this.name = data.bookName;
+    this.author = data.bookAuthor;
+    this.pages = data.pages;
+    if (data.read === 'on') {
+      this.read = true;
+    } else this.read = false;
+  }
 }
 
 function addBookToLibrary(event) {
